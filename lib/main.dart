@@ -1,18 +1,9 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'api/notifications.dart';
 
 void main() {
-  AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-        channelKey: 'basic_channel',
-        channelName: 'Basic notifications',
-        channelDescription: 'Notification channel for basic tests',
-      ),
-    ],
-    debug: true,
-  );
+  initializeNotifications();
   runApp(const MyApp());
 }
 
@@ -51,13 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  int _counter = 0;
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   triggerNotification() {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -81,11 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: triggerNotification,
           child: const Text('Show notification'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
