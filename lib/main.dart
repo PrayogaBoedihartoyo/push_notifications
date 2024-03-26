@@ -1,9 +1,19 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'api/notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  initializeNotifications();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      appId: '1:724267824479:android:aba829661e327cb0f532ea',
+      messagingSenderId: '724267824479',
+      projectId: 'push-notifications-4940d',
+      apiKey: 'AIzaSyBj5QGP830e555vxG5Hv-y2wQxswEXkxcY',
+    ),
+  );
+  await getTokenFCM();
   runApp(const MyApp());
 }
 
